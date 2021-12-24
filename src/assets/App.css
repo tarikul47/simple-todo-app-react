@@ -1,0 +1,131 @@
+/*
+* Common Css 
+*/
+body {
+  background: rgb(68, 105, 247);
+  background: linear-gradient(
+    238deg,
+    rgba(68, 105, 247, 1) 0%,
+    rgba(246, 91, 245, 1) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+/* todo container css  */
+
+.todo-container {
+  width: 100%;
+  height: 90vh;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+}
+
+.dots {
+  height: 17px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5em;
+}
+.dot1,
+.dot2,
+.dot3 {
+  height: 100%;
+  width: 17px;
+  border-radius: 50%;
+  margin: 0 7px 0 0;
+}
+.dot1 {
+  background-color: #ff605c;
+}
+.dot2 {
+  background-color: #ffbd44;
+}
+.dot3 {
+  background-color: #00ca4e;
+}
+/* heading css */
+select.form-select {
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: #fff;
+}
+.todo-list {
+  height: 373px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.todo-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* todo list css */
+/* .tasks {
+    min-height: 3em;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6em;
+    margin: 0.7em auto;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+} */
+
+.tasks {
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.list-group-item {
+  background: transparent;
+}
+
+.delete,
+.update,
+.view {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.delete {
+  margin-left: 0.8em;
+  color: #f12727;
+}
+.update {
+  margin-left: 0.8em;
+  color: #0d6efd;
+}
+.view {
+  margin-left: 0.8em;
+  color: #fff;
+}
+.todo-list li {
+    border: none;
+}
+.ms-2.inputBtn {
+    flex: 1;
+}
+.inputBtn input[type="text"] {
+    width: 275%;
+}
+
+.complete{
+  border: 1px solid #00ca4e !important;
+}
