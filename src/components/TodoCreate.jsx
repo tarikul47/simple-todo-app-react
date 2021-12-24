@@ -1,8 +1,7 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useState } from "react";
 
 const TodoCreate = ({ onCreateTodo }) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const createTodo = () => {
     if (title.length > 0) {
       onCreateTodo({

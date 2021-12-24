@@ -77,7 +77,7 @@ const ShowTask = (props) => {
                       name=""
                       id=""
                       placeholder="Task Name"
-                      value={todo.title}
+                      value={title}
                       onChange={(e) => setTitle(e.target.value)}
                     />
                     <select
