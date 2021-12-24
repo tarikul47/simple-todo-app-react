@@ -11,17 +11,17 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: shortid.generate(),
-      title: "title 1",
+      title: "Task 1",
       status: "Pending",
     },
     {
       id: shortid.generate(),
-      title: "title 2",
+      title: "Task 2",
       status: "Done",
     },
     {
       id: shortid.generate(),
-      title: "title 3",
+      title: "Task 3",
       status: "Pending",
     },
   ]);
