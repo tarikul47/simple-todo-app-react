@@ -37,7 +37,7 @@ function App() {
   const [pendingTask, setPendingTask] = useState(modifyPTask);
   const [doneTask, setdoneTask] = useState(modifyDTask);
 
-  console.log(pendingTask);
+  //console.log(pendingTask);
 
   const tasks =
     visibility === "All"

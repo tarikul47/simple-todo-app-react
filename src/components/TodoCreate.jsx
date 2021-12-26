@@ -13,6 +13,11 @@ const TodoCreate = ({ onCreateTodo }) => {
       alert('Please write a task.')
     }
   };
+  const handleEnterSubmission = (e) => {
+    if (e.key === 'Enter') {
+      createTodo();
+    }
+}
 
   return (
     <div className="addTask">
@@ -25,6 +30,7 @@ const TodoCreate = ({ onCreateTodo }) => {
           aria-describedby="button-addon2"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          onKeyDown={e => handleEnterSubmission(e)}
         />
         <button
           style={{ color: "#FFF" }}
@@ -32,8 +38,9 @@ const TodoCreate = ({ onCreateTodo }) => {
           type="button"
           id="button-addon2"
           onClick={(e) => createTodo()}
+         
         >
-          Button
+          ADD
         </button>
       </div>
     </div>
