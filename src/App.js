@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import shortid from "shortid";
 import "./assets/App.css";
 import SingleTodo from "./components/SingleTodo";
@@ -31,22 +31,24 @@ function App() {
 
   const [visibility, setVisibility] = useState("All");
 
-  let modifyPTask = todos.filter((item) => item.status === "Pending");
-  let modifyDTask = todos.filter((item) => item.status === "Done");
+  const [NewTodolist, setNewTodolist] = useState(todos);
 
-  const [pendingTask, setPendingTask] = useState(modifyPTask);
-  const [doneTask, setdoneTask] = useState(modifyDTask);
+  useEffect(() => {
+    let pendingTasks = todos.filter((item) => item.status === "Pending");
+    let doneTasks = todos.filter((item) => item.status === "Done");
 
-  //console.log(pendingTask);
+    const tasks =
+      visibility === "All"
+        ? todos
+        : visibility === "Pending"
+        ? pendingTasks
+        : visibility === "Done"
+        ? doneTasks
+        : [];
+    setNewTodolist(tasks);
+  }, [todos, visibility]);
 
-  const tasks =
-    visibility === "All"
-      ? todos
-      : visibility === "Pending"
-      ? pendingTask
-      : visibility === "Done"
-      ? doneTask
-      : [];
+  console.log(NewTodolist);
 
   /**
    * Add todo
@@ -56,7 +58,7 @@ function App() {
     let newTodos = todos.slice();
     newTodos.unshift(todo);
     setTodos(newTodos);
-    setVisibility('All')
+    setVisibility("All");
   };
 
   /**
@@ -67,6 +69,7 @@ function App() {
     let newTodos = todos.slice();
     newTodos[index] = todo;
     setTodos(newTodos);
+    setVisibility("All");
   };
   /**
    * Delete Todo
@@ -77,6 +80,7 @@ function App() {
       let newTodos = todos.slice();
       newTodos.splice(index, 1);
       setTodos(newTodos);
+      setVisibility("All");
     }
   };
 
@@ -130,7 +134,7 @@ function App() {
                       <div className="col-lg-12 todo-list">
                         <ol className="list-group">
                           {todos?.length === 0 && <TodoEmpty></TodoEmpty>}
-                          {tasks.map((todo, index) => (
+                          {NewTodolist.map((todo, index) => (
                             <SingleTodo
                               deleteTodo={deleteTodo}
                               onUpdateTodo={onUpdateTodo}
