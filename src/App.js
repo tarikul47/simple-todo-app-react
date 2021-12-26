@@ -6,8 +6,6 @@ import TodoCreate from "./components/TodoCreate";
 import TodoEmpty from "./components/TodoEmpty";
 
 function App() {
-  const [visibility, setVisibility] = useState("All");
-
   const [todos, setTodos] = useState([
     {
       id: shortid.generate(),
@@ -24,17 +22,31 @@ function App() {
       title: "Task 3",
       status: "Pending",
     },
+    {
+      id: shortid.generate(),
+      title: "Task 4",
+      status: "Pending",
+    },
   ]);
-  const todoVisibility = (e) => {
-    setVisibility(e.target.value);
-    // console.log(visibility);
-    if (visibility !== "All") {
-      const newTodoList = todos.filter((todo) => todo.status === visibility);
-      console.log(newTodoList);
-      setTodos(newTodoList);
-    }
-  };
-  console.log(visibility);
+
+  const [visibility, setVisibility] = useState("All");
+
+  let modifyPTask = todos.filter((item) => item.status === "Pending");
+  let modifyDTask = todos.filter((item) => item.status === "Done");
+
+  const [pendingTask, setPendingTask] = useState(modifyPTask);
+  const [doneTask, setdoneTask] = useState(modifyDTask);
+
+  console.log(pendingTask);
+
+  const tasks =
+    visibility === "All"
+      ? todos
+      : visibility === "Pending"
+      ? pendingTask
+      : visibility === "Done"
+      ? doneTask
+      : [];
 
   /**
    * Add todo
@@ -44,6 +56,7 @@ function App() {
     let newTodos = todos.slice();
     newTodos.unshift(todo);
     setTodos(newTodos);
+    setVisibility('All')
   };
 
   /**
@@ -98,13 +111,11 @@ function App() {
                           aria-label="Default select example"
                           name="visibility"
                           value={visibility}
-                          onChange={(e) => {
-                            todoVisibility(e);
-                          }}
+                          onChange={(e) => setVisibility(e.target.value)}
                         >
                           <option value="All">All</option>
                           <option value="Pending">Pending</option>
-                          <option value="Done">Complete</option>
+                          <option value="Done">Done</option>
                         </select>
                       </div>
                     </div>
@@ -118,8 +129,8 @@ function App() {
                       {/* <!-- todo list start --> */}
                       <div className="col-lg-12 todo-list">
                         <ol className="list-group">
-                          {todos.length === 0 && <TodoEmpty></TodoEmpty>}
-                          {todos.map((todo, index) => (
+                          {todos?.length === 0 && <TodoEmpty></TodoEmpty>}
+                          {tasks.map((todo, index) => (
                             <SingleTodo
                               deleteTodo={deleteTodo}
                               onUpdateTodo={onUpdateTodo}
